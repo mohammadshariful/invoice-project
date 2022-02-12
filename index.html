@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- fontawesome -->
+    <script
+      src="https://kit.fontawesome.com/31b1cf5ca4.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Invoice</title>
+    <!-- bootstrap css styles link -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <style>
+      .color-one {
+        background-color: #120e43;
+      }
+      .color-two {
+        background-color: #242b2e;
+      }
+      .color-three {
+        background: #4c3ae3;
+      }
+      #erorr {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="text-center">
+      <nav class="navbar navbar-dark bg-dark text-center">
+        <div
+          class="container-fluid d-flex justify-content-center align-items-center"
+        >
+          <a class="navbar-brand fs-1" href="#">
+            <span><i class="fas fa-receipt"></i></span>
+            <span>Your Invoice</span></a
+          >
+        </div>
+      </nav>
+    </header>
+    <!-- **** -->
+    <main class="container w-75 mx-auto">
+      <!-- input filed section start -->
+      <section class="my-3 rounded color-one">
+        <h5 class="text-center color-two rounded text-white py-2">
+          Please enter the data....
+        </h5>
+        <!--user input area start-->
+        <div class="input-group py-3 px-4">
+          <span
+            class="input-group-text color-three text-white"
+            id="basic-addon1"
+            >Buyer details</span
+          >
+          <textarea
+            id="buyer-details-info"
+            class="form-control"
+            aria-label="With textarea"
+          ></textarea>
+          <button id="buyer-details-btn" type="submit" class="btn btn-primary">
+            Submit
+          </button>
+        </div>
+        <!--user input area end-->
+        <!-- itmes input field scetion start -->
+        <section class="py-3 px-4">
+          <h5 class="text-center color-two text-white py-2">
+            Enter the item details....
+          </h5>
+          <form class="w-50 mx-auto">
+            <div class="input-group py-2">
+              <span
+                class="input-group-text color-three text-white"
+                id="basic-addon1"
+                >Items Name</span
+              >
+              <input type="text" class="form-control" id="items-name" />
+            </div>
+            <div class="input-group py-2">
+              <span
+                class="input-group-text color-three text-white"
+                id="basic-addon1"
+              >
+                Price</span
+              >
+              <input type="text" class="form-control" id="items-price" />
+            </div>
+            <div class="input-group py-2 mb-2">
+              <span
+                class="input-group-text color-three text-white"
+                id="basic-addon1"
+                >Quantity</span
+              >
+              <input type="text" class="form-control" id="items-quantity" />
+            </div>
+            <button id="addBtn" class="btn btn-primary d-block mx-auto">
+              Add Item
+            </button>
+            <p
+              id="erorr"
+              class="text-danger bg-light my-4 py-2 px-2 text-center fw-bold rounded"
+            >
+              Error message
+            </p>
+          </form>
+          <hr class="bg-white" />
+          <div class="w-75 mx-auto my-3">
+            <marquee class="text-white" direction="left"
+              >You can add more items using input fields.</marquee
+            >
+            <p class="text-white"></p>
+          </div>
+        </section>
+        <!-- itmes input field scetion end -->
+      </section>
+      <!-- input filed section end -->
+      <!-- invoice card section start -->
+      <section class="my-5 px-4 py-3 color-three rounded">
+        <h3 class="text-white">Invoice: #8723192</h3>
+        <hr class="bg-white" />
+        <!-- invoice card buyer details start-->
+        <div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
+          <div class="col">
+            <div class="card h-100 color-one">
+              <div class="card-body">
+                <h4 class="text-warning">
+                  Date : <span id="show-date"></span>
+                </h4>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100 color-one">
+              <div class="card-body">
+                <h4 class="text-warning">Invoice To :</h4>
+                <p id="user-details" class="text-white"></p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100 color-one">
+              <div class="card-body">
+                <h4 class="text-warning">Seller:</h4>
+                <h6 class="text-white">
+                  mohammadsharifulislam64@gmail.com 16 mym,Bangladesh
+                </h6>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- invoice table start -->
+        <table class="table bg-white rounded">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Price</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Total</th>
+            </tr>
+          </thead>
+          <tbody id="table-container">
+            <!-- appendChild -->
+          </tbody>
+          <tbody>
+            <tr>
+              <td colspan="3" class="text-end fw-bold">SubTotal</td>
+              <td class="text-right">$<span id="sub-total">0</span></td>
+            </tr>
+            <tr>
+              <td colspan="3" class="text-end fw-bold">Tax</td>
+              <td class="text-right">$ <span id="tax">0</span></td>
+            </tr>
+            <tr>
+              <td colspan="3" class="text-end fw-bold">Grand Total</td>
+              <td class="text-right fw-bold">
+                $ <span id="grand-total">0</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- invoice table end -->
+        <section class="color-one rounded px-4 py-3">
+          <div class="row">
+            <div class="col-md-6 text-start">
+              <div>
+                <p class="text-warning">Bank Transfer</p>
+                <ul class="list-unstyled text-white">
+                  <li>Account Name:Mohammad Shariful Islam</li>
+                  <li>Account Number:1234567890934</li>
+                  <li>Code: 231231231212312</li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-md-6 text-md-end">
+              <div>
+                <p class="text-warning">Total Amount</p>
+                <h1 class="text-white">
+                  $<span id="total-amount" class="text-warning">0</span>
+                </h1>
+                <p class="text-white">Taxes Included</p>
+              </div>
+            </div>
+          </div>
+          <p class="text-white">
+            Get started by creating a new file or uploading an existing file. We
+            recommend every repository include a README, LICENSE, and
+            .gitignore.
+          </p>
+        </section>
+        <!-- invoice card buyer details end-->
+      </section>
+      <!-- invoice card section end -->
+      <!-- button section start -->
+      <section class="mb-5 text-center">
+        <button type="button" class="btn color-one text-white">
+          <span>
+            <i class="fas fa-print"></i>
+          </span>
+          Print Invoice
+        </button>
+        <button type="button" class="btn color-one text-white">
+          <span>
+            <i class="fas fa-download"></i>
+          </span>
+          Download Invoice
+        </button>
+      </section>
+      <!-- button section end -->
+    </main>
+    <footer class="container-fluid color-one text-center text-white">
+      <p class="py-4 fs-5">All right reserve &copy; Invoice Ltd</p>
+    </footer>
+    <!-- script file added -->
+    <script src="./app/app.js"></script>
+  </body>
+</html>
